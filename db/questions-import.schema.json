@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Vestibular Question Import",
+  "description": "Canonical import format for bulk question ingestion. Files must contain an array of question objects.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "source_ref",
+      "text",
+      "image_url",
+      "option_a",
+      "option_b",
+      "option_c",
+      "option_d",
+      "option_e",
+      "correct_answer",
+      "explanation",
+      "subject",
+      "exam_origin",
+      "difficulty",
+      "year",
+      "tags"
+    ],
+    "properties": {
+      "source_ref": {
+        "type": "string",
+        "description": "Stable source identifier used for idempotent upserts, for example enem-2020-q42."
+      },
+      "text": {
+        "type": "string",
+        "description": "Question stem in Markdown-compatible plain text."
+      },
+      "image_url": {
+        "type": ["string", "null"],
+        "format": "uri"
+      },
+      "option_a": {
+        "type": "string"
+      },
+      "option_b": {
+        "type": "string"
+      },
+      "option_c": {
+        "type": "string"
+      },
+      "option_d": {
+        "type": "string"
+      },
+      "option_e": {
+        "type": "string"
+      },
+      "correct_answer": {
+        "type": "string",
+        "enum": ["A", "B", "C", "D", "E"]
+      },
+      "explanation": {
+        "type": ["string", "null"]
+      },
+      "subject": {
+        "type": ["string", "null"]
+      },
+      "exam_origin": {
+        "type": "string",
+        "enum": ["ENEM", "FUVEST", "UNICAMP", "VUNESP"]
+      },
+      "difficulty": {
+        "type": ["string", "null"],
+        "enum": ["easy", "medium", "hard", null]
+      },
+      "year": {
+        "type": ["integer", "null"]
+      },
+      "tags": {
+        "type": ["array", "null"],
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
